@@ -84,14 +84,14 @@ class College:  #为夏令营创建一个类
             #if self.status==0:
                 #break
 
-
+###1.浏览器初始化
 wb=web.Chrome()
 wb.implicitly_wait(10)
 options=web.ChromeOptions()
 options.add_argument('user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"')
 wb.get('http://pc.baoyanwang.com.cn/articles?category=%E4%BF%9D%E7%A0%94%E4%BF%A1%E6%81%AF')
 
-###1.收集单个信息
+###2.单页循环收集
 ch=College(wb)
 
 total_page=input("请输入想收集的页数（推荐参数50）请输入：")
@@ -105,7 +105,7 @@ while 1:
         print("请输入正整数！")
         total_page = input("请输入想收集的页数（推荐参数50）请输入：")
 ch.FUN(int(total_page))
-###2.单页循环收集
+###3.处理信息并保存
 import  pandas as  pd
 import time
 
@@ -118,7 +118,5 @@ time_str=str(time.localtime()[1])+'-'+str(time.localtime()[2])
 PATH=r'D:\Documents\Desktop\夏令营1.1版本 '+time_str+'.xlsx'
 final.to_excel(PATH,encoding='utf_8_sig')
 
-
-
 #wb.close()
-###3.翻页 + 循环收集
+
